@@ -1,8 +1,16 @@
 import Layout from '../Layout/Layout';
 import { Switch, NavLink, Route } from 'react-router-dom';
-import MovieCast from '../MovieCast/MovieCast';
-import Reviews from '../Reviews/Reviews';
+// import MovieCast from '../MovieCast/MovieCast';
+// import Reviews from '../Reviews/Reviews';
 import routes from '../../routes';
+import { Suspense, lazy } from 'react';
+
+const MovieCast = lazy(() =>
+  import('../MovieCast/MovieCast'),
+);
+const Reviews = lazy(() =>
+  import('../Reviews/Reviews'),
+);
 
 const AddInfoToCard = ({ path, url, from }) => {
   return (
@@ -32,11 +40,12 @@ const AddInfoToCard = ({ path, url, from }) => {
           </li>
         </ul>
       </Layout>
-
-      <Switch>
-        <Route path={`${path}${routes.cast}`} component={MovieCast} />
-        <Route path={`${path}${routes.reviews}`} component={Reviews} />
-      </Switch>
+      <Suspense>
+        <Switch>
+          <Route path={`${path}${routes.cast}`} component=   {MovieCast} />
+          <Route path={`${path}${routes.reviews}`} component={Reviews} />
+        </Switch>
+      </Suspense>
     </div>
   );
 };
