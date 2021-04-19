@@ -1,0 +1,13 @@
+.siteNavList {
+  display: flex;
+  margin: 20px 0 0 20px;
+}
+
+.siteNavItem {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.siteNavItem:not(:last-child) {
+  margin-right: 30px;
+}
